@@ -1,5 +1,7 @@
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import parser.JsonParser;
 import parser.NoSuchFileException;
 import parser.Parser;
@@ -42,24 +44,21 @@ public class JsonParserTests {
         comparedWriteCart.addVirtualItem(disk);
     }
 
-    @Test
-    void testParserReadFromFileException() {
+    @ParameterizedTest
+    @ValueSource(strings = {"src/main/resources/noexistsing.json", "noexistsing.json", ""})
+    void testParserReadFromFileException(String path) {
         NoSuchFileException thrown = Assertions.assertThrows(NoSuchFileException.class, () -> {
-            parser.readFromFile(new File("src/main/resources/noexistsing.json"));
+            parser.readFromFile(new File(path));
         });
-        assertEquals("File src/main/resources/noexistsing.json.json not found!", thrown.getMessage());
+        assertEquals(String.format("File %s.json not found!", path), thrown.getMessage());
     }
 
     @Disabled
     @Test
     void testParserWriteToFile() throws IOException {
         parser.writeToFile(comparedWriteCart);
-        Path filepath = Paths.get("src/main/resources/kate-cart.json");
-        Path filepath2 = Paths.get("src/main/resources/kate-cart-compare.json");
-        File fileFromPath = filepath.toFile();
-        File file2FromPath = filepath2.toFile();
-        assertEquals(FileUtils.readFileToString(fileFromPath, "utf-8"),
-                FileUtils.readFileToString(file2FromPath, "utf-8"));
+        assertEquals(FileUtils.readFileToString(new File("src/main/resources/kate-cart.json"), "utf-8"),
+                FileUtils.readFileToString(new File("src/main/resources/kate-cart-compare.json"), "utf-8"));
     }
 
     @Test

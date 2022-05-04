@@ -1,4 +1,6 @@
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import shop.Cart;
@@ -20,7 +22,6 @@ class ShopTests {
         realItem.setPrice(3);
         virtualItem = new VirtualItem();
         virtualItem.setPrice(4);
-        System.out.println("BEFORE METHOD");
     }
 
     @Test
@@ -45,12 +46,23 @@ class ShopTests {
         assertEquals(8.4, cart.getTotalPrice());
     }
 
+    @Disabled
     @Test
-    @DisplayName("Cart class test for deleting")
-    void testClassDeleteItems() {
+    @DisplayName("Cart class test for deleting, BUG")
+    void testClassDeleteRealItems() {
         cart.addRealItem(realItem);
         cart.addVirtualItem(virtualItem);
         cart.deleteRealItem(realItem);
         assertEquals(4.8, cart.getTotalPrice());
+    }
+
+    @Disabled
+    @Test
+    @DisplayName("Cart class test for deleting, BUG")
+    void testClassDeleteVirtualItems() {
+        cart.addRealItem(realItem);
+        cart.addVirtualItem(virtualItem);
+        cart.deleteVirtualItem(virtualItem);
+        assertEquals(3.6, cart.getTotalPrice());
     }
 }
