@@ -1,6 +1,4 @@
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import shop.Cart;
@@ -39,16 +37,16 @@ class ShopTests {
     }
 
     @Test
-    @DisplayName("Cart class test for adding")
+    @DisplayName("Cart class test for adding RealItem and VirtualItem")
     void testClassAddItems() {
         cart.addRealItem(realItem);
         cart.addVirtualItem(virtualItem);
         assertEquals(8.4, cart.getTotalPrice());
     }
 
-    @Disabled
+    //her BUG
     @Test
-    @DisplayName("Cart class test for deleting, BUG")
+    @DisplayName("Cart class test for deleting Real Item")
     void testClassDeleteRealItems() {
         cart.addRealItem(realItem);
         cart.addVirtualItem(virtualItem);
@@ -56,9 +54,9 @@ class ShopTests {
         assertEquals(4.8, cart.getTotalPrice());
     }
 
-    @Disabled
+    //here BUG
     @Test
-    @DisplayName("Cart class test for deleting, BUG")
+    @DisplayName("Cart class test for deleting Virtual Item")
     void testClassDeleteVirtualItems() {
         cart.addRealItem(realItem);
         cart.addVirtualItem(virtualItem);

@@ -22,6 +22,7 @@ public class JsonParserTests {
     Cart comparedWriteCart;
     Cart comparedReadCart;
 
+    //Here I prepare Cart objects that are consistent with objects from json file in resources
     @BeforeEach
     void init() {
         parser = new JsonParser();
@@ -45,7 +46,7 @@ public class JsonParserTests {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"src/main/resources/noexistsing.json", "noexistsing.json", ""})
+    @ValueSource(strings = {"src/main/resources/noexistsing.json", "noexistsing.json", "", " "})
     void testParserReadFromFileException(String path) {
         NoSuchFileException thrown = Assertions.assertThrows(NoSuchFileException.class, () -> {
             parser.readFromFile(new File(path));
