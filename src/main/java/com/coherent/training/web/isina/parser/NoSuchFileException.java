@@ -1,4 +1,4 @@
-package parser;
+package com.coherent.training.web.isina.parser;
 
 public class NoSuchFileException extends RuntimeException {
 

@@ -2,29 +2,28 @@ import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import parser.JsonParser;
-import parser.NoSuchFileException;
-import parser.Parser;
-import shop.Cart;
-import shop.RealItem;
-import shop.VirtualItem;
+import com.coherent.training.web.isina.parser.JsonParser;
+import com.coherent.training.web.isina.parser.NoSuchFileException;
+import com.coherent.training.web.isina.parser.Parser;
+import com.coherent.training.web.isina.shop.Cart;
+import com.coherent.training.web.isina.shop.RealItem;
+import com.coherent.training.web.isina.shop.VirtualItem;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JsonParserTests {
 
-    Parser parser;
-    Cart comparedWriteCart;
-    Cart comparedReadCart;
+    private Parser parser;
+    private Cart comparedWriteCart;
+    private Cart comparedReadCart;
 
-    //Here I prepare Cart objects that are consistent with objects from json file in resources
     @BeforeEach
-    void init() {
+    public void init() {
         parser = new JsonParser();
         comparedReadCart = new Cart("eugen-cart");
         comparedWriteCart = new Cart("kate-cart");
@@ -47,29 +46,33 @@ public class JsonParserTests {
 
     @ParameterizedTest
     @ValueSource(strings = {"src/main/resources/noexistsing.json", "noexistsing.json", "", " "})
-    void testParserReadFromFileException(String path) {
+    public void testParserReadFromFileException(String path) {
         NoSuchFileException thrown = Assertions.assertThrows(NoSuchFileException.class, () -> {
             parser.readFromFile(new File(path));
         });
-        assertEquals(String.format("File %s.json not found!", path), thrown.getMessage());
+        assertEquals(String.format("File %s.json not found!", path), thrown.getMessage(), "Error message doesn't equal expected value.");
     }
 
     @Disabled
     @Test
-    void testParserWriteToFile() throws IOException {
+    public void testParserWriteToFile() throws IOException {
         parser.writeToFile(comparedWriteCart);
-        assertEquals(FileUtils.readFileToString(new File("src/main/resources/kate-cart.json"), "utf-8"),
-                FileUtils.readFileToString(new File("src/main/resources/kate-cart-compare.json"), "utf-8"));
+        String actualFile = FileUtils.readFileToString(new File("src/main/resources/kate-cart.json"), "utf-8");
+        String expectedFile = FileUtils.readFileToString(new File("src/main/resources/kate-cart-compare.json"), "utf-8");
+        assertEquals(actualFile, expectedFile,"Object added to File incorrectly.");
     }
 
     @Test
-    void testParserReadFromFile() {
+    public void testParserReadFromFile() {
         Cart testCart = parser.readFromFile(new File("src/main/resources/eugen-cart.json"));
-        assertThat(comparedReadCart).usingRecursiveComparison().isEqualTo(testCart);
+        assertAll("ValidateEmpCode",
+                () -> assertEquals(testCart.getCartName(),comparedReadCart.getCartName(), "Cart name doesn't equal expected value."),
+                () -> assertEquals(testCart.getTotalPrice(),comparedReadCart.getTotalPrice(), "Cart Total Price doesn't equal expected value.")
+                );
     }
 
-    @AfterEach
-    void cleanUpEach() throws IOException {
+    @AfterAll
+    public static void cleanUpEach() throws IOException {
         Path filepath = Paths.get("src/main/resources/kate-cart.json");
         Files.deleteIfExists(filepath);
     }

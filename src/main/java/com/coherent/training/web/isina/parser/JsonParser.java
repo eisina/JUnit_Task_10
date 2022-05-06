@@ -1,7 +1,7 @@
-package parser;
+package com.coherent.training.web.isina.parser;
 
 import com.google.gson.Gson;
-import shop.Cart;
+import com.coherent.training.web.isina.shop.Cart;
 
 import java.io.*;
 
