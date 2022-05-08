@@ -65,7 +65,7 @@ public class JsonParserTests {
     @Test
     public void testParserReadFromFile() {
         Cart testCart = parser.readFromFile(new File("src/main/resources/eugen-cart.json"));
-        assertAll("ValidateEmpCode",
+        assertAll("ValidateObjectFromFile",
                 () -> assertEquals(testCart.getCartName(),comparedReadCart.getCartName(), "Cart name doesn't equal expected value."),
                 () -> assertEquals(testCart.getTotalPrice(),comparedReadCart.getTotalPrice(), "Cart Total Price doesn't equal expected value.")
                 );
