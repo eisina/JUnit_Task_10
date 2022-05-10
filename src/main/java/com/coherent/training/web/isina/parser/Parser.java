@@ -1,6 +1,6 @@
-package parser;
+package com.coherent.training.web.isina.parser;
 
-import shop.Cart;
+import com.coherent.training.web.isina.shop.Cart;
 
 import java.io.File;
 

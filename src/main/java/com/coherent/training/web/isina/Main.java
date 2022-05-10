@@ -1,8 +1,10 @@
-import parser.JsonParser;
-import parser.Parser;
-import shop.Cart;
-import shop.RealItem;
-import shop.VirtualItem;
+package com.coherent.training.web.isina;
+
+import com.coherent.training.web.isina.parser.JsonParser;
+import com.coherent.training.web.isina.parser.Parser;
+import com.coherent.training.web.isina.shop.Cart;
+import com.coherent.training.web.isina.shop.RealItem;
+import com.coherent.training.web.isina.shop.VirtualItem;
 
 import java.io.File;
 
