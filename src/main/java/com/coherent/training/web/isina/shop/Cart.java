@@ -1,4 +1,4 @@
-package shop;
+package com.coherent.training.web.isina.shop;
 
 import java.util.ArrayList;
 import java.util.List;

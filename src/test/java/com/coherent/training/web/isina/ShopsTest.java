@@ -1,8 +1,10 @@
+package com.coherent.training.web.isina;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import shop.Cart;
-import shop.RealItem;
-import shop.VirtualItem;
+import com.coherent.training.web.isina.shop.Cart;
+import com.coherent.training.web.isina.shop.RealItem;
+import com.coherent.training.web.isina.shop.VirtualItem;
 
 import static org.testng.Assert.assertEquals;
 

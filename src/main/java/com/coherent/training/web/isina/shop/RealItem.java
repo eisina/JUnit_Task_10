@@ -1,4 +1,4 @@
-package shop;
+package com.coherent.training.web.isina.shop;
 
 public class RealItem extends Item {
 
