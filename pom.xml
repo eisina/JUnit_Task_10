@@ -19,16 +19,27 @@
         </plugins>
     </build>
 
+    <properties>
+        <tesng.version>7.4.0</tesng.version>
+        <gson.version>2.7</gson.version>
+        <common.version>2.1</common.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.7</version>
+            <version>${gson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.11</version>
+            <version>${tesng.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${common.version}</version>
         </dependency>
     </dependencies>
 </project>

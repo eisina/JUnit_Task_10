@@ -40,7 +40,8 @@ public class ShopsTest {
     public void testClassAddItems() {
         cart.addRealItem(realItem);
         cart.addVirtualItem(virtualItem);
-        assertEquals(8.4, cart.getTotalPrice(), "Total price of Real Item and Virtual Item doesn't equal expected value.");
+        assertEquals(8.4, cart.getTotalPrice(), "Total price of Real Item and " +
+                "Virtual Item doesn't equal expected value.");
     }
 
     @Test
@@ -48,7 +49,8 @@ public class ShopsTest {
         cart.addRealItem(realItem);
         cart.addVirtualItem(virtualItem);
         cart.deleteRealItem(realItem);
-        assertEquals(4.8, cart.getTotalPrice(), "Total price after deleting Real Item doesn't equal expected value.");
+        assertEquals(4.8, cart.getTotalPrice(), "Total price after deleting Real Item " +
+                "doesn't equal expected value.");
     }
 
     @Test
@@ -56,6 +58,7 @@ public class ShopsTest {
         cart.addRealItem(realItem);
         cart.addVirtualItem(virtualItem);
         cart.deleteVirtualItem(virtualItem);
-        assertEquals(3.6, cart.getTotalPrice(), "Total price after deleting Virtual Item doesn't equal expected value.");
+        assertEquals(3.6, cart.getTotalPrice(), "Total price after deleting " +
+                "Virtual Item doesn't equal expected value.");
     }
 }
