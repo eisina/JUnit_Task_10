@@ -22,7 +22,7 @@ public class ParserTest {
     private Cart comparedWriteCart;
     private Cart comparedReadCart;
     private static final String ACTUAL_FILE_PATH = "src/main/resources/kate-cart.json";
-    private static final String EXPECTED_FILE_PATH = "src/main/resources/kate-cart.json";
+    private static final String EXPECTED_FILE_PATH = "src/main/resources/kate-cart-compare.json";
     private static final String READ_FILE_PATH = "src/main/resources/eugen-cart.json";
 
 
@@ -84,7 +84,7 @@ public class ParserTest {
 
     @AfterClass
     public void cleanUpEach() throws IOException {
-        Path filepath = Paths.get("src/main/resources/kate-cart.json");
+        Path filepath = Paths.get(ACTUAL_FILE_PATH);
         Files.deleteIfExists(filepath);
     }
 }
